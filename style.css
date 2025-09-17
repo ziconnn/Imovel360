@@ -1,8 +1,94 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
+// ano no footer
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+// dados de exemplo (podes trocar mais tarde por dados reais da BD)
+const imoveis = [
+  {
+    id: 1, operacao: 'comprar', titulo: 'T3 com Jardim e Garagem',
+    local: 'Lisboa', tipo: 'Moradia', preco: 1000000,
+    img: 'imagens/casa1.jpg'
+  },
+  {
+    id: 2, operacao: 'arrendar', titulo: 'Estúdio Centro',
+    local: 'Porto', tipo: 'Estúdio', preco: 700,
+    img: 'https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop'
+  },
+  {
+    id: 3, operacao: 'comprar', titulo: 'Moradia T3 com Jardim',
+    local: 'Braga', tipo: 'Moradia', preco: 350000,
+    img: 'https://images.unsplash.com/photo-1600585154340-1e9865d0959b?q=80&w=1200&auto=format&fit=crop'
+  },
+  {
+    id: 4, operacao: 'arrendar', titulo: 'T1 Renovado',
+    local: 'Faro', tipo: 'Apartamento', preco: 950,
+    img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop'
+  }
+];
+
+// render helpers
+const elComprar = document.getElementById('lista-comprar');
+const elArrendar = document.getElementById('lista-arrendar');
+
+function cardHTML(i) {
+  const precoFmt = i.operacao === 'comprar' ? `${i.preco.toLocaleString('pt-PT')} €` : `${i.preco} €/mês`;
+  return `
+    <article class="card">
+      <div class="card__img">
+        <img src="${i.img}" alt="${i.titulo} em ${i.local}">
+        <span class="badge">${i.operacao.toUpperCase()}</span>
+      </div>
+      <div class="card__body">
+        <h3 class="card__title">${i.titulo}</h3>
+        <div class="card__meta">${i.tipo} • ${i.local}</div>
+        <div class="card__price">${precoFmt}</div>
+        <div class="card__actions">
+          <a href="#contactos">Ver detalhes</a>
+          <a href="#contactos">Contactar</a>
+        </div>
+      </div>
+    </article>
+  `;
 }
-h1 {
-  color: #0077cc;
+
+function render(list, container) {
+  container.innerHTML = list.map(cardHTML).join('') || '<p>Sem resultados.</p>';
 }
+
+function filtrar() {
+  const local = document.getElementById('f-local').value.trim().toLowerCase();
+  const tipo  = document.getElementById('f-tipo').value;
+  const op    = document.getElementById('f-operacao').value;
+  const precoMax = Number(document.getElementById('f-preco').value || Infinity);
+
+  return imoveis.filter(i => {
+    const byLocal = local ? (i.local.toLowerCase().includes(local)) : true;
+    const byTipo  = tipo ? (i.tipo === tipo) : true;
+    const byOp    = op ? (i.operacao === op) : true;
+    const price   = i.operacao === 'comprar' ? i.preco : i.preco; // ambos comparáveis
+    const byPreco = price <= precoMax;
+    return byLocal && byTipo && byOp && byPreco;
+  });
+}
+
+// render inicial
+function renderTudo() {
+  render(imoveis.filter(i => i.operacao === 'comprar'), elComprar);
+  render(imoveis.filter(i => i.operacao === 'arrendar'), elArrendar);
+}
+renderTudo();
+
+// pesquisa
+document.getElementById('searchForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const filtrados = filtrar();
+  render(filtrados.filter(i => i.operacao === 'comprar'), elComprar);
+  render(filtrados.filter(i => i.operacao === 'arrendar'), elArrendar);
+});
+
+document.getElementById('limpar').addEventListener('click', () => {
+  document.getElementById('f-local').value = '';
+  document.getElementById('f-tipo').value = '';
+  document.getElementById('f-operacao').value = '';
+  document.getElementById('f-preco').value = '';
+  renderTudo();
+});

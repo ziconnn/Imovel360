@@ -1,14 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Imóvel360</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imóvel360 — Comprar, Vender e Arrendar</title>
+  <meta name="description" content="Imóvel360: plataforma para comprar, vender e arrendar imóveis. Pesquisa rápida, listagens claras e contacto simples.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Bem-vindo ao Imóvel360</h1>
-  <p>Compra, venda e arrendamento de imóveis num só lugar.</p>
+  <header class="nav">
+    <div class="container nav__wrap">
+      <a class="logo" href="#home">Imóvel<span>360</span></a>
+      <nav class="menu">
+        <a href="#comprar">Comprar</a>
+        <a href="#arrendar">Arrendar</a>
+        <a href="#vender">Vender</a>
+        <a href="#contactos">Contactos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero__wrap">
+        <h1>Encontra a tua próxima <span>casa</span></h1>
+        <p>Compra, venda e arrendamento de imóveis num só lugar.</p>
+
+        <form id="searchForm" class="search">
+          <input id="f-local" type="text" placeholder="Localização (ex.: Lisboa)" aria-label="Localização">
+          <select id="f-tipo" aria-label="Tipo de imóvel">
+            <option value="">Tipo</option>
+            <option>Apartamento</option>
+            <option>Moradia</option>
+            <option>Estúdio</option>
+            <option>Terreno</option>
+          </select>
+          <select id="f-operacao" aria-label="Operação">
+            <option value="">Comprar/Arrendar</option>
+            <option value="comprar">Comprar</option>
+            <option value="arrendar">Arrendar</option>
+          </select>
+          <select id="f-preco" aria-label="Preço máximo">
+            <option value="">Preço máx.</option>
+            <option value="500">até 500€</option>
+            <option value="1000">até 1.000€</option>
+            <option value="1500">até 1.500€</option>
+            <option value="2000">até 2.000€</option>
+            <option value="250000">até 250.000€</option>
+            <option value="350000">até 350.000€</option>
+          </select>
+          <button type="submit">Pesquisar</button>
+          <button type="button" id="limpar">Limpar</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="comprar" class="section">
+      <div class="container">
+        <h2>Comprar</h2>
+        <div id="lista-comprar" class="grid"></div>
+      </div>
+    </section>
+
+    <section id="arrendar" class="section alt">
+      <div class="container">
+        <h2>Arrendar</h2>
+        <div id="lista-arrendar" class="grid"></div>
+      </div>
+    </section>
+
+    <section id="vender" class="section cta">
+      <div class="container cta__wrap">
+        <h2>Queres vender um imóvel?</h2>
+        <p>Publica o teu anúncio no Imóvel360. Descrição, fotos e contacto — simples e rápido.</p>
+        <a class="btn" href="#contactos">Quero ser contactado</a>
+      </div>
+    </section>
+
+    <section id="contactos" class="section">
+      <div class="container">
+        <h2>Contactos</h2>
+        <form class="form" id="contactForm" action="#" method="post" onsubmit="alert('Obrigado! Em breve entraremos em contacto.'); return false;">
+          <div class="form__row">
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="form__row">
+            <input type="text" name="assunto" placeholder="Assunto" required>
+          </div>
+          <textarea name="mensagem" rows="5" placeholder="Mensagem" required></textarea>
+          <button type="submit" class="btn">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__wrap">
+      <p>© <span id="ano"></span> Imóvel360 • Projeto PAPE</p>
+      <a href="#home">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
