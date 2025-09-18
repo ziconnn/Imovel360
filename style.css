@@ -1,94 +1,144 @@
-// ano no footer
-document.getElementById('ano').textContent = new Date().getFullYear();
-
-// dados de exemplo (podes trocar mais tarde por dados reais da BD)
-const imoveis = [
-  {
-    id: 1, operacao: 'comprar', titulo: 'T3 com Jardim e Garagem',
-    local: 'Lisboa', tipo: 'Moradia', preco: 1000000,
-    img: 'imagens/casa1.jpg'
-  },
-  {
-    id: 2, operacao: 'arrendar', titulo: 'Estúdio Centro',
-    local: 'Porto', tipo: 'Estúdio', preco: 700,
-    img: 'https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop'
-  },
-  {
-    id: 3, operacao: 'comprar', titulo: 'Moradia T3 com Jardim',
-    local: 'Braga', tipo: 'Moradia', preco: 350000,
-    img: 'https://images.unsplash.com/photo-1600585154340-1e9865d0959b?q=80&w=1200&auto=format&fit=crop'
-  },
-  {
-    id: 4, operacao: 'arrendar', titulo: 'T1 Renovado',
-    local: 'Faro', tipo: 'Apartamento', preco: 950,
-    img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop'
-  }
-];
-
-// render helpers
-const elComprar = document.getElementById('lista-comprar');
-const elArrendar = document.getElementById('lista-arrendar');
-
-function cardHTML(i) {
-  const precoFmt = i.operacao === 'comprar' ? `${i.preco.toLocaleString('pt-PT')} €` : `${i.preco} €/mês`;
-  return `
-    <article class="card">
-      <div class="card__img">
-        <img src="${i.img}" alt="${i.titulo} em ${i.local}">
-        <span class="badge">${i.operacao.toUpperCase()}</span>
-      </div>
-      <div class="card__body">
-        <h3 class="card__title">${i.titulo}</h3>
-        <div class="card__meta">${i.tipo} • ${i.local}</div>
-        <div class="card__price">${precoFmt}</div>
-        <div class="card__actions">
-          <a href="#contactos">Ver detalhes</a>
-          <a href="#contactos">Contactar</a>
-        </div>
-      </div>
-    </article>
-  `;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-function render(list, container) {
-  container.innerHTML = list.map(cardHTML).join('') || '<p>Sem resultados.</p>';
+body {
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
 }
 
-function filtrar() {
-  const local = document.getElementById('f-local').value.trim().toLowerCase();
-  const tipo  = document.getElementById('f-tipo').value;
-  const op    = document.getElementById('f-operacao').value;
-  const precoMax = Number(document.getElementById('f-preco').value || Infinity);
-
-  return imoveis.filter(i => {
-    const byLocal = local ? (i.local.toLowerCase().includes(local)) : true;
-    const byTipo  = tipo ? (i.tipo === tipo) : true;
-    const byOp    = op ? (i.operacao === op) : true;
-    const price   = i.operacao === 'comprar' ? i.preco : i.preco; // ambos comparáveis
-    const byPreco = price <= precoMax;
-    return byLocal && byTipo && byOp && byPreco;
-  });
+/* Header / Menu */
+header {
+  background: #0077cc;
+  color: #fff;
+  padding: 15px 30px;
+  text-align: center;
 }
 
-// render inicial
-function renderTudo() {
-  render(imoveis.filter(i => i.operacao === 'comprar'), elComprar);
-  render(imoveis.filter(i => i.operacao === 'arrendar'), elArrendar);
+header h1 {
+  margin-bottom: 10px;
 }
-renderTudo();
 
-// pesquisa
-document.getElementById('searchForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const filtrados = filtrar();
-  render(filtrados.filter(i => i.operacao === 'comprar'), elComprar);
-  render(filtrados.filter(i => i.operacao === 'arrendar'), elArrendar);
-});
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-document.getElementById('limpar').addEventListener('click', () => {
-  document.getElementById('f-local').value = '';
-  document.getElementById('f-tipo').value = '';
-  document.getElementById('f-operacao').value = '';
-  document.getElementById('f-preco').value = '';
-  renderTudo();
-});
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Secções principais */
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  color: #0077cc;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #0077cc;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Filtros de pesquisa */
+form {
+  margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+form select,
+form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background: #0077cc;
+  color: #fff;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #005fa3;
+}
+
+/* Cards dos imóveis */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin-bottom: 10px;
+  color: #0077cc;
+}
+
+.card-content p {
+  margin: 5px 0;
+}
+
+/* Contactos */
+form#contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+form#contacto input,
+form#contacto textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form#contacto button {
+  background: #0077cc;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form#contacto button:hover {
+  background: #005fa3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #f4f4f4;
+  margin-top: 30px;
+  font-size: 14px;
+}
