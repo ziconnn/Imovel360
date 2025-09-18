@@ -2,28 +2,136 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Imóvel360 - Comprar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprar - Imóvel360</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #004080;
+      padding: 15px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      background: #003366;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .imovel-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .imovel-card img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .imovel-info {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .imovel-info h2 {
+      margin-top: 0;
+      color: #004080;
+    }
+
+    .preco {
+      font-size: 20px;
+      font-weight: bold;
+      color: #008000;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #004080;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #00264d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #004080;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>Imóvel360</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="comprar.html">Comprar</a>
-      <a href="arrendar.html">Arrendar</a>
-      <a href="vender.html">Vender</a>
-      <a href="contactos.html">Contactos</a>
-    </nav>
+    <h1>Imóvel360 - Comprar</h1>
   </header>
 
-  <section>
-    <h2>Comprar Imóveis</h2>
-    <p>Aqui vais poder encontrar imóveis disponíveis para compra.</p>
-  </section>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="comprar.html">Comprar</a>
+    <a href="arrendar.html">Arrendar</a>
+    <a href="vender.html">Vender</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+
+  <div class="container">
+    <h2>Imóveis disponíveis para compra</h2>
+
+    <!-- Card da Casa 1 -->
+    <div class="imovel-card">
+      <img src="Imagens/casa1-1.jpg" alt="Moradia em Oeiras">
+      <div class="imovel-info">
+        <h2>Moradia T4 em Santo Amaro de Oeiras</h2>
+        <p class="preco">1 250 000 €</p>
+        <p>Moradia com jardim, 4 quartos, garagem ampla e vista para o mar. Localização privilegiada em Oeiras.</p>
+        <a href="casa1.html" class="btn">Ver detalhes</a>
+      </div>
+    </div>
+
+  </div>
 
   <footer>
-    <p>© 2025 Imóvel360 - Projeto PAPE</p>
+    © 2025 Imóvel360 • Projeto PAPE
   </footer>
+
 </body>
 </html>
