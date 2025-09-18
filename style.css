@@ -1,4 +1,4 @@
-/* Reset básico */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -7,16 +7,26 @@
 }
 
 body {
-  background-color: #ffffff;
-  color: #333;
-  line-height: 1.6;
+  background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  min-height: 100vh;
 }
 
-/* Header / Menu */
+/* Overlay azul */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 50, 120, 0.7);
+  z-index: -1;
+}
+
+/* Header / Nav */
 header {
-  background: #0077cc;
-  color: #fff;
-  padding: 15px 30px;
+  background: rgba(0, 80, 160, 0.9);
+  padding: 15px;
   text-align: center;
 }
 
@@ -29,116 +39,49 @@ nav a {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 18px;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-/* Secções principais */
+/* Conteúdo */
 section {
-  padding: 40px 20px;
   max-width: 1000px;
-  margin: auto;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 h2 {
-  color: #0077cc;
+  color: #005fa3;
   margin-bottom: 20px;
-  border-bottom: 2px solid #0077cc;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-/* Filtros de pesquisa */
-form {
-  margin-bottom: 25px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-form select,
-form input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  background: #0077cc;
-  color: #fff;
-  cursor: pointer;
-}
-
-form button:hover {
-  background: #005fa3;
-}
-
-/* Cards dos imóveis */
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 15px;
-}
-
-.card-content h3 {
-  margin-bottom: 10px;
-  color: #0077cc;
-}
-
-.card-content p {
-  margin: 5px 0;
 }
 
 /* Contactos */
-form#contacto {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 600px;
+.contact-info p {
+  margin: 10px 0;
+  font-size: 18px;
 }
 
-form#contacto input,
-form#contacto textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.contact-info a {
+  color: #005fa3;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-form#contacto button {
-  background: #0077cc;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-form#contacto button:hover {
-  background: #005fa3;
+.contact-info a:hover {
+  text-decoration: underline;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 20px;
-  background: #f4f4f4;
-  margin-top: 30px;
-  font-size: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  margin-top: 40px;
 }
