@@ -2,135 +2,55 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comprar - Imóvel360</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OeirasPrime - Comprar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-      color: #333;
-    }
-
-    header {
-      background: #004080;
-      padding: 15px;
-      text-align: center;
-      color: white;
-    }
-
-    nav {
-      background: #003366;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .imovel-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-      overflow: hidden;
-      display: flex;
-    }
-
-    .imovel-card img {
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .imovel-info {
-      padding: 20px;
-      flex: 1;
-    }
-
-    .imovel-info h2 {
-      margin-top: 0;
-      color: #004080;
-    }
-
-    .preco {
-      font-size: 20px;
-      font-weight: bold;
-      color: #008000;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #004080;
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      background: #00264d;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #004080;
-      color: white;
-      margin-top: 30px;
-    }
-  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Imóvel360 - Comprar</h1>
-  </header>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="comprar.html">Comprar</a>
-    <a href="arrendar.html">Arrendar</a>
-    <a href="vender.html">Vender</a>
-    <a href="contactos.html">Contactos</a>
-  </nav>
-
-  <div class="container">
-    <h2>Imóveis disponíveis para compra</h2>
-
-    <!-- Card da Casa 1 -->
-    <div class="imovel-card">
-      <img src="Imagens/casa1-1.jpg" alt="Moradia em Oeiras">
-      <div class="imovel-info">
-        <h2>Moradia T4 em Santo Amaro de Oeiras</h2>
-        <p class="preco">1 250 000 €</p>
-        <p>Moradia com jardim, 4 quartos, garagem ampla e vista para o mar. Localização privilegiada em Oeiras.</p>
-        <a href="casa1.html" class="btn">Ver detalhes</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">OeirasPrime</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="comprar.html">Comprar</a></li>
+          <li class="nav-item"><a class="nav-link" href="arrendar.html">Arrendar</a></li>
+          <li class="nav-item"><a class="nav-link" href="vender.html">Vender</a></li>
+          <li class="nav-item"><a class="nav-link" href="contactos.html">Contactos</a></li>
+        </ul>
       </div>
     </div>
+  </nav>
 
+  <!-- Lista de imóveis -->
+  <div class="container py-5">
+    <h2 class="mb-4">Imóveis disponíveis para compra</h2>
+    <div class="row g-4">
+
+      <!-- Casa 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <img src="Imagens/vender/casa1/casa1-1.jpg" class="card-img-top" alt="Moradia em Oeiras">
+          <div class="card-body">
+            <h5 class="card-title">Moradia T4 em Santo Amaro de Oeiras</h5>
+            <p class="text-success fw-bold">1 250 000 €</p>
+            <p class="card-text">Moradia com jardim, 4 quartos, garagem ampla e vista para o mar.</p>
+            <a href="casas/vender/casa1.html" class="btn btn-primary">Ver detalhes</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <footer>
-    © 2025 Imóvel360 • Projeto PAPE
+    © 2025 OeirasPrime • Projeto PAPE
   </footer>
 
 </body>
